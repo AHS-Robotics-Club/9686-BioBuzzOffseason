@@ -20,10 +20,21 @@ android {
     namespace = 'org.firstinspires.ftc.teamcode'
 
     packagingOptions {
+        jniLibs {
+            pickFirsts += ['**/*.so']
+        }
         jniLibs.useLegacyPackaging true
+    }
+}
+
+repositories {
+    maven {
+        url "https://repo.dairy.foundation/releases"
     }
 }
 
 dependencies {
     implementation project(':FtcRobotController')
+    implementation "org.solverslib:core:0.3.5" // core
+    implementation "org.solverslib:pedroPathing:0.3.5" // pedroPathing
 }
