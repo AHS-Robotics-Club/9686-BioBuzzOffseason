@@ -24,7 +24,7 @@ public class MecDriveOpMode extends CommandOpMode {
     public void initialize(){
         drive = new MecanumDrive(fL,fR,bL,bR);
         driverOp = new GamepadEx(gamepad1);
-        fL = new Motor(hardwareMap, "fL");
+        fL = new Motor(hardwareMap, "fL",);
         bR = new Motor(hardwareMap, "bR");
         fR = new Motor(hardwareMap, "fR");
         bL = new Motor(hardwareMap, "bL");
