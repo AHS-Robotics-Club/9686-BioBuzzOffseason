@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.teleop;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.seattlesolvers.solverslib.command.CommandOpMode;
 
 
@@ -18,6 +19,8 @@ public class FlywheelPIDTuningOpmode extends CommandOpMode {
     private Flywheel flywheel;
 
     private FtcDashboard dash;
+
+    private DcMotorEx flywheel1, flywheel2;
 
     private GamepadEx driverPad;
 
@@ -35,6 +38,7 @@ public class FlywheelPIDTuningOpmode extends CommandOpMode {
         driverPad = new GamepadEx(gamepad1);
         dash = FtcDashboard.getInstance();
         flywheel = new Flywheel(hardwareMap);
+
 
 
         // Register the Spindex subsystem
@@ -59,7 +63,7 @@ public class FlywheelPIDTuningOpmode extends CommandOpMode {
 
         // Get the current position and the target position
         double currentVelo = flywheel.velocityGetter();
-        pidTarget = flywheel.targetVeloGetter();
+        flywheel.setTargetVelo(pidTarget);
 
         // Calculate the PID error
         double error = Math.abs(pidTarget) - Math.abs(currentVelo);

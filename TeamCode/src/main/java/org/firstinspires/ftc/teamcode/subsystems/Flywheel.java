@@ -15,6 +15,10 @@ public class Flywheel extends SubsystemBase {
 
     private double currentVelo, targetVelo, output;
 
+    //6k cpr = 28, 28 * 6000
+
+
+
 
 
     public Flywheel(final HardwareMap hMap) {
@@ -71,9 +75,17 @@ public class Flywheel extends SubsystemBase {
         currentVelo = flywheel1.getVelocity();
 
 
-        output = flywheelpid.calculate(currentVelo,targetVelo);
+        if (currentVelo < targetVelo - 20) {
+            flywheel1.setPower(1);
+        } else {
 
-        flywheel1.setPower(output);
+            flywheel1.setPower(0);
+        }
+
+
+//        output = flywheelpid.calculate(currentVelo,targetVelo);
+//        flywheel1.setPower(output);
+
 
 
     }
