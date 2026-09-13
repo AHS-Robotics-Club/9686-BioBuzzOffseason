@@ -17,7 +17,7 @@ import com.seattlesolvers.solverslib.hardware.motors.Motor;
  * For the derivation of mecanum kinematics, please watch this video:
  * https://www.youtube.com/watch?v=8rhAkjViHEQ.
  */
-public class MecanumDrive extends RobotDrive {
+public class MecanumDriveHelper extends RobotDrive {
     private double rightSideMultiplier;
 
     Motor[] motors;
@@ -31,7 +31,7 @@ public class MecanumDrive extends RobotDrive {
      * @param backLeft   the back left motor
      * @param backRight  the back right motor
      */
-    public MecanumDrive(Motor frontLeft, Motor frontRight, Motor backLeft, Motor backRight) {
+    public MecanumDriveHelper(Motor frontLeft, Motor frontRight, Motor backLeft, Motor backRight) {
         this(true, frontLeft, frontRight, backLeft, backRight);
     }
 
@@ -44,7 +44,7 @@ public class MecanumDrive extends RobotDrive {
      * @param backLeft   the back left motor
      * @param backRight  the back right motor
      */
-    public MecanumDrive(boolean autoInvert, Motor frontLeft, Motor frontRight, Motor backLeft, Motor backRight) {
+    public MecanumDriveHelper(boolean autoInvert, Motor frontLeft, Motor frontRight, Motor backLeft, Motor backRight) {
         motors = new Motor[]{frontLeft, frontRight, backLeft, backRight};
         setRightSideInverted(autoInvert);
     }
