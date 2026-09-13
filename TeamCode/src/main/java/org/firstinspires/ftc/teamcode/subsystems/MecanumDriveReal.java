@@ -7,12 +7,11 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
-import com.seattlesolvers.solverslib.drivebase.MecanumDrive;
 import com.seattlesolvers.solverslib.hardware.motors.Motor;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class MecanumDriveReal extends SubsystemBase {
-    private MecanumDrive drive;
+    private MecanumDriveHelper drive;
     private IMU imu;
 
     public MecanumDriveReal(HardwareMap hw){
@@ -24,7 +23,7 @@ public class MecanumDriveReal extends SubsystemBase {
         fL.motor.setDirection(DcMotorEx.Direction.REVERSE);
         bL.motor.setDirection(DcMotorEx.Direction.REVERSE);
 
-        drive = new MecanumDrive(fL, fR, bL, bR);
+        drive = new MecanumDriveHelper(false, fL, fR, bL, bR);
 
         imu = hw.get(IMU.class, "imu");
         imu.initialize(new IMU.Parameters(new RevHubOrientationOnRobot(
