@@ -5,6 +5,10 @@ buildscript {
         maven {
             url "https://repo.dairy.foundation/releases"
         }
+
+        maven {
+            url = "https://repo.dairy.foundation/snapshots"
+        }
     }
     dependencies {
         classpath "dev.frozenmilk:Load:0.3.0"
@@ -58,7 +62,7 @@ dependencies {
     implementation "org.solverslib:core:0.3.5" // core
     implementation "org.solverslib:pedroPathing:0.3.5" // pedroPathing
     implementation("dev.frozenmilk.sinister:Sloth:0.3.0")
-    implementation("com.acmerobotics.slothboard:dashboard:0.3.0+0.5.1")
-    implementation("com.bylazar.sloth:fullpanels:0.3.0+1.0.12")
+//    implementation("com.acmerobotics.slothboard:dashboard:0.3.0+0.5.1")
+//    implementation("com.bylazar.sloth:fullpanels:0.3.0+1.0.12")
 
 }
