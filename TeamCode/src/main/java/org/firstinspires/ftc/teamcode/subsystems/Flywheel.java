@@ -22,10 +22,13 @@ public class Flywheel extends SubsystemBase {
 
 
 
-    public Flywheel(final HardwareMap hMap) {
+    public Flywheel(final HardwareMap hMap, final String fly1, final String fly2) {
 
-        flywheel1 = hMap.get(DcMotorEx.class, "fly1");
-        flywheel2 = hMap.get(DcMotorEx.class, "fly2");
+        flywheel1 = hMap.get(DcMotorEx.class, fly1);
+        flywheel2 = hMap.get(DcMotorEx.class, fly2);
+
+        flywheel1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        flywheel1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         flywheel1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         flywheel2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -70,19 +73,39 @@ public class Flywheel extends SubsystemBase {
 
     }
 
+    public void setFly1Power(double power) {
+
+        flywheel1.setPower(power);
+    }
+
+    public void setFly2Power(double power) {
+
+        flywheel2.setPower(power);
+    }
+
+    public void prepLaunch(double leftTrigger) {
+
+        if (leftTrigger != 0) {
+
+            targetVelo = 2000;
+        } else targetVelo = 0;
+    }
+
 
 
     @Override
     public void periodic() {
 
-        currentVelo = flywheel1.getVelocity();
+        currentVelo = -flywheel1.getVelocity();
 
 
-        if (currentVelo < targetVelo - 20) {
-            flywheel1.setPower(1);
+        if (-currentVelo < targetVelo - 20) {
+            flywheel1.setPower(.6);
+            flywheel2.setPower(.6  );
         } else {
 
             flywheel1.setPower(0);
+            flywheel2.setPower(0);
         }
 
 

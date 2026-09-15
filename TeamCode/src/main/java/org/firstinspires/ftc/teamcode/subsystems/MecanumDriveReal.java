@@ -24,7 +24,7 @@ public class MecanumDriveReal extends SubsystemBase {
         fL.motor.setDirection(DcMotorEx.Direction.REVERSE);
         bL.motor.setDirection(DcMotorEx.Direction.REVERSE);
 
-        drive = new MecanumDrive(fL, fR, bL, bR);
+        drive = new MecanumDrive(false, fL, fR, bL, bR);
 
         imu = hw.get(IMU.class, "imu");
         imu.initialize(new IMU.Parameters(new RevHubOrientationOnRobot(

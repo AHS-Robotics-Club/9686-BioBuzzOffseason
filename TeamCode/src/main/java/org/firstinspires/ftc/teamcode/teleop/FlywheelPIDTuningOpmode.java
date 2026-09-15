@@ -20,7 +20,7 @@ public class FlywheelPIDTuningOpmode extends CommandOpMode {
 
     private FtcDashboard dash;
 
-    private DcMotorEx flywheel1, flywheel2;
+
 
     private GamepadEx driverPad;
 
@@ -31,13 +31,17 @@ public class FlywheelPIDTuningOpmode extends CommandOpMode {
 
     public static double pidTarget = 0;
 
+    public static double fly1pwr;
+    public static double fly2pwr;
+
     @Override
     public void initialize() {
         // Initialize the Spindex subsystem
 
         driverPad = new GamepadEx(gamepad1);
         dash = FtcDashboard.getInstance();
-        flywheel = new Flywheel(hardwareMap);
+        flywheel = new Flywheel(hardwareMap, "fly1", "fly2");
+
 
 
 
@@ -67,6 +71,8 @@ public class FlywheelPIDTuningOpmode extends CommandOpMode {
 
         // Calculate the PID error
         double error = Math.abs(pidTarget) - Math.abs(currentVelo);
+//        flywheel.setFly1Power(fly1pwr);
+//        flywheel.setFly2Power(fly2pwr);
 
         // Send the PID constants and the error to the telemetry
 
@@ -77,6 +83,8 @@ public class FlywheelPIDTuningOpmode extends CommandOpMode {
         packet.put("Current Velo(Ticks)", currentVelo);
         packet.put("Target Velo (Ticks)", pidTarget);
         packet.put("Error", error);
+//        packet.put("F1P", fly1pwr);
+//        packet.put("F2P", fly2pwr);
         dash.sendTelemetryPacket(packet);
 
     }
